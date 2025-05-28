@@ -17,7 +17,6 @@ public class ExecutionTimer {
     }
     
 
-	public static String ASSEMBLER = "";
 	private static final String UNDERSCORE = "_";
 	private static final String SPACE = " ";
 	private static final String CSVEXTENSION = ".csv";
@@ -107,9 +106,11 @@ public class ExecutionTimer {
     
     
     private static void getCsvFileHandles() throws Exception {
-		String dateStr = getDate(FWUtils.getTimestampNow(), "yyyyMMdd hhmmss");
+	    	GregorianCalender calendar = new GregorianCalender();
+	    	Timestamp currTime = new Timestamp(calendar.getTime().getTime());
+		String dateStr = getDate(currTime, "yyyyMMdd hhmmss");
 		String fileName = "";
-		fileName = fileOutputPathPrefix + LOGICAL_FILENAME + UNDERSCORE + ASSEMBLER + UNDERSCORE + dateStr + CSVEXTENSION;
+		fileName = fileOutputPathPrefix + LOGICAL_FILENAME + UNDERSCORE + dateStr + CSVEXTENSION;
 				
 		fileOutputStream = new FileOutputStream(fileName);
 	}
@@ -126,14 +127,4 @@ public class ExecutionTimer {
 		}
 		return strDate;
 	}
-    
-    public static String trimValue(String src, String delimiter) {
-		StringTokenizer stk = new StringTokenizer(src, delimiter);
-		StringBuffer sbf = new StringBuffer();
-		while (stk.hasMoreTokens()) {
-			sbf.append(stk.nextToken());
-		}
-		return sbf.toString();
-	}
-    
 }
