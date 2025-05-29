@@ -48,7 +48,7 @@ public class ExecutionTimer {
         }
     }
 
-    public void writeToExcel() throws Exception {
+    public void writeToCSV() throws Exception {
 
     	try {
     		getCsvFileHandles();
